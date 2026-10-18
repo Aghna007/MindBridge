@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account — MindBridge{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+    <div class="auth-layout">
+
+        <!-- Left: Branding / Visual -->
+        <div class="auth-showcase">
+            <div class="auth-showcase-content">
+
+                <span class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    Start your journey
+                </span>
+
+                <h1>
+                    Your well-being,
+                    <span>starts here.</span>
+                </h1>
+
+                <p>
+                    Create your MindBridge account and get a personalized
+                    space to understand your well-being and build healthier
+                    habits.
+                </p>
+
+                <div class="auth-highlight">
+                    <div class="auth-highlight-icon">✦</div>
+
+                    <div>
+                        <strong>Built for students</strong>
+                        <span>Private • Personalized • AI-assisted</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="auth-orbit orbit-one"></div>
+            <div class="auth-orbit orbit-two"></div>
+            <div class="auth-glow"></div>
+        </div>
+
+
+        <!-- Right: Register Form -->
+        <div class="auth-panel">
+
+            <div class="auth-card">
+
+                <div class="auth-header">
+
+                    <div class="auth-icon">
+                        ✦
+                    </div>
+
+                    <h2>Create your account</h2>
+
+                    <p>
+                        Take the first step toward understanding
+                        your well-being better.
+                    </p>
+
+                </div>
+
+
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="auth-alerts">
+
+                            {% for category, message in messages %}
+
+                                <div class="auth-alert alert-{{ category }}">
+                                    {{ message }}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <!-- Register Form -->
+        <form method="POST" action="{{ url_for('register') }}" class="auth-form">
+
+            <div class="form-group">
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create account</button>
+
+            <p class="auth-switch">
+                Already have an account?
+                <a href="{{ url_for('login') }}">Log in</a>
+            </p>
+        </form>
+
+    </div>  <!-- closes auth-card -->
+</div>      <!-- closes auth-panel -->
+</div>      <!-- closes auth-layout -->
+</section>
+                {% endblock %}

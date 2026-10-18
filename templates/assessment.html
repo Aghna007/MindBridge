@@ -1,0 +1,912 @@
+{% extends "base.html" %}
+
+{% block title %}Take Assessment — MindBridge{% endblock %}
+
+{% block content %}
+
+<main class="assessment-page">
+
+    <!-- =========================================
+         ASSESSMENT HERO
+         ========================================= -->
+
+    <section class="assessment-hero">
+
+        <div class="assessment-hero-content">
+
+            <span class="assessment-eyebrow">
+                <span class="assessment-status-dot"></span>
+                AI-assisted well-being check-in
+            </span>
+
+            <h1>
+                Let's understand your
+                <span>well-being.</span>
+            </h1>
+
+            <p>
+                Answer these questions honestly based on your current
+                student experience. Your responses help MindBridge
+                generate a personalized well-being insight.
+            </p>
+
+            <div class="assessment-meta">
+
+                <div class="assessment-meta-item">
+                    <strong>11</strong>
+                    <span>Questions</span>
+                </div>
+
+                <div class="assessment-meta-divider"></div>
+
+                <div class="assessment-meta-item">
+                    <strong>2–3</strong>
+                    <span>Minutes</span>
+                </div>
+
+                <div class="assessment-meta-divider"></div>
+
+                <div class="assessment-meta-item">
+                    <strong>AI</strong>
+                    <span>Assisted</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="assessment-hero-visual">
+
+            <div class="assessment-orbit orbit-one"></div>
+            <div class="assessment-orbit orbit-two"></div>
+
+            <div class="assessment-brain-card">
+
+                <div class="brain-icon">
+                    🧠
+                </div>
+
+                <div>
+                    <strong>MindBridge AI</strong>
+                    <span>Listening to your experience</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PRIVACY NOTICE
+         ========================================= -->
+
+    <div class="assessment-privacy">
+
+        <div class="privacy-icon">
+            🔒
+        </div>
+
+        <div>
+            <strong>Your responses are private</strong>
+
+            <p>
+                Your answers are used to generate your MindBridge
+                assessment and personalized insights.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         PROGRESS HEADER
+         ========================================= -->
+
+    <div class="assessment-progress-wrapper">
+
+        <div class="assessment-progress-top">
+
+            <div>
+                <span>Assessment progress</span>
+                <strong>11 questions</strong>
+            </div>
+
+            <span class="progress-count">0 / 11</span>
+
+        </div>
+
+        <div class="assessment-progress">
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ASSESSMENT FORM
+         ========================================= -->
+
+    <form
+        action="/assessment"
+        method="POST"
+        class="assessment-form-card"
+        id="assessmentForm"
+    >
+
+        <!-- =====================================
+             QUESTION 01 — GENDER
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    01
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        About you
+                    </span>
+
+                    <h2>What is your gender?</h2>
+
+                    <p>
+                        Select the option that best describes you.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="choice-grid">
+
+                <label class="choice-card">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        required
+                    >
+
+                    <span class="choice-content">
+                        <span class="choice-icon">♂</span>
+
+                        <span>
+                            <strong>Male</strong>
+                            <small>Select this option</small>
+                        </span>
+                    </span>
+
+                    <span class="choice-check">✓</span>
+
+                </label>
+
+
+                <label class="choice-card">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Female"
+                    >
+
+                    <span class="choice-content">
+                        <span class="choice-icon">♀</span>
+
+                        <span>
+                            <strong>Female</strong>
+                            <small>Select this option</small>
+                        </span>
+                    </span>
+
+                    <span class="choice-check">✓</span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 02 — AGE
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    02
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        About you
+                    </span>
+
+                    <h2>What is your age?</h2>
+
+                    <p>
+                        Enter your current age in years.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="input-field-large">
+
+                <input
+                    type="number"
+                    name="age"
+                    min="10"
+                    max="100"
+                    placeholder="e.g. 19"
+                    required
+                >
+
+                <span>years</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 03 — ACADEMIC PRESSURE
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    03
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Academic life
+                    </span>
+
+                    <h2>How would you rate your academic pressure?</h2>
+
+                    <p>
+                        Think about the amount of academic pressure
+                        you currently experience.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="select-field">
+
+                <select
+                    name="academic_pressure"
+                    required
+                >
+
+                    <option value="">
+                        Select your answer
+                    </option>
+
+                    <option value="1">
+                        1 — Very Low
+                    </option>
+
+                    <option value="2">
+                        2 — Low
+                    </option>
+
+                    <option value="3">
+                        3 — Moderate
+                    </option>
+
+                    <option value="4">
+                        4 — High
+                    </option>
+
+                    <option value="5">
+                        5 — Very High
+                    </option>
+
+                </select>
+
+                <span class="select-arrow">⌄</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 04 — CGPA
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    04
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Academic life
+                    </span>
+
+                    <h2>What is your CGPA?</h2>
+
+                    <p>
+                        Enter your current or most recent CGPA.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="input-field-large">
+
+                <input
+                    type="number"
+                    name="cgpa"
+                    min="0"
+                    max="10"
+                    step="0.01"
+                    placeholder="e.g. 8.25"
+                    required
+                >
+
+                <span>/ 10</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 05 — STUDY SATISFACTION
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    05
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Academic life
+                    </span>
+
+                    <h2>How satisfied are you with your studies?</h2>
+
+                    <p>
+                        Consider your current level of satisfaction
+                        with your academic experience.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="select-field">
+
+                <select
+                    name="study_satisfaction"
+                    required
+                >
+
+                    <option value="">
+                        Select your answer
+                    </option>
+
+                    <option value="1">
+                        1 — Very Unsatisfied
+                    </option>
+
+                    <option value="2">
+                        2 — Unsatisfied
+                    </option>
+
+                    <option value="3">
+                        3 — Neutral
+                    </option>
+
+                    <option value="4">
+                        4 — Satisfied
+                    </option>
+
+                    <option value="5">
+                        5 — Very Satisfied
+                    </option>
+
+                </select>
+
+                <span class="select-arrow">⌄</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 06 — SLEEP
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    06
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Daily well-being
+                    </span>
+
+                    <h2>How many hours of sleep do you usually get?</h2>
+
+                    <p>
+                        Choose the option that best represents
+                        your typical sleep duration.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="select-field">
+
+                <select
+                    name="sleep_duration"
+                    required
+                >
+
+                    <option value="">
+                        Select your answer
+                    </option>
+
+                    <option value="Less than 5 hours">
+                        Less than 5 hours
+                    </option>
+
+                    <option value="5-6 hours">
+                        5–6 hours
+                    </option>
+
+                    <option value="7-8 hours">
+                        7–8 hours
+                    </option>
+
+                    <option value="More than 8 hours">
+                        More than 8 hours
+                    </option>
+
+                </select>
+
+                <span class="select-arrow">⌄</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 07 — DIETARY HABITS
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    07
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Daily well-being
+                    </span>
+
+                    <h2>How would you describe your dietary habits?</h2>
+
+                    <p>
+                        Choose the option that best reflects
+                        your usual eating habits.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="choice-grid choice-grid-three">
+
+                <label class="choice-card">
+
+                    <input
+                        type="radio"
+                        name="dietary_habits"
+                        value="Healthy"
+                        required
+                    >
+
+                    <span class="choice-content">
+                        <span class="choice-icon">🥗</span>
+
+                        <span>
+                            <strong>Healthy</strong>
+                            <small>Balanced habits</small>
+                        </span>
+                    </span>
+
+                    <span class="choice-check">✓</span>
+
+                </label>
+
+
+                <label class="choice-card">
+
+                    <input
+                        type="radio"
+                        name="dietary_habits"
+                        value="Moderate"
+                    >
+
+                    <span class="choice-content">
+                        <span class="choice-icon">🍽️</span>
+
+                        <span>
+                            <strong>Moderate</strong>
+                            <small>Mixed habits</small>
+                        </span>
+                    </span>
+
+                    <span class="choice-check">✓</span>
+
+                </label>
+
+
+                <label class="choice-card">
+
+                    <input
+                        type="radio"
+                        name="dietary_habits"
+                        value="Unhealthy"
+                    >
+
+                    <span class="choice-content">
+                        <span class="choice-icon">🍔</span>
+
+                        <span>
+                            <strong>Unhealthy</strong>
+                            <small>Needs improvement</small>
+                        </span>
+                    </span>
+
+                    <span class="choice-check">✓</span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 08 — DEGREE
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    08
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Academic life
+                    </span>
+
+                    <h2>What is your degree or program?</h2>
+
+                    <p>
+                        Enter the degree or course you are currently pursuing.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="text-input-large">
+
+                <input
+                    type="text"
+                    name="degree"
+                    placeholder="e.g. B.Tech Computer Science"
+                    required
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 09 — WORK/STUDY HOURS
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    09
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Daily routine
+                    </span>
+
+                    <h2>How many hours do you spend studying or working per day?</h2>
+
+                    <p>
+                        Include your usual study, academic, or work hours.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="input-field-large">
+
+                <input
+                    type="number"
+                    name="work_study_hours"
+                    min="0"
+                    max="24"
+                    placeholder="e.g. 7"
+                    required
+                >
+
+                <span>hours/day</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 10 — FINANCIAL STRESS
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    10
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Personal well-being
+                    </span>
+
+                    <h2>How would you rate your financial stress?</h2>
+
+                    <p>
+                        Consider how much financial concerns currently
+                        affect your day-to-day well-being.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="select-field">
+
+                <select
+                    name="financial_stress"
+                    required
+                >
+
+                    <option value="">
+                        Select your answer
+                    </option>
+
+                    <option value="1">
+                        1 — Very Low
+                    </option>
+
+                    <option value="2">
+                        2 — Low
+                    </option>
+
+                    <option value="3">
+                        3 — Moderate
+                    </option>
+
+                    <option value="4">
+                        4 — High
+                    </option>
+
+                    <option value="5">
+                        5 — Very High
+                    </option>
+
+                </select>
+
+                <span class="select-arrow">⌄</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUESTION 11 — FAMILY HISTORY
+             ===================================== -->
+
+        <section class="assessment-question">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    11
+                </span>
+
+                <div>
+                    <span class="question-category">
+                        Background
+                    </span>
+
+                    <h2>
+                        Does your family have a history of mental illness?
+                    </h2>
+
+                    <p>
+                        Choose the answer that best represents
+                        your family history.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="choice-grid">
+
+                <label class="choice-card">
+
+                    <input
+                        type="radio"
+                        name="family_history"
+                        value="Yes"
+                        required
+                    >
+
+                    <span class="choice-content">
+
+                        <span class="choice-icon">
+                            ✓
+                        </span>
+
+                        <span>
+                            <strong>Yes</strong>
+                            <small>There is a family history</small>
+                        </span>
+
+                    </span>
+
+                    <span class="choice-check">✓</span>
+
+                </label>
+
+
+                <label class="choice-card">
+
+                    <input
+                        type="radio"
+                        name="family_history"
+                        value="No"
+                    >
+
+                    <span class="choice-content">
+
+                        <span class="choice-icon">
+                            —
+                        </span>
+
+                        <span>
+                            <strong>No</strong>
+                            <small>No known family history</small>
+                        </span>
+
+                    </span>
+
+                    <span class="choice-check">✓</span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SUBMIT
+             ===================================== -->
+
+        <section class="assessment-submit">
+
+            <div class="submit-copy">
+
+                <div class="submit-icon">
+                    ✨
+                </div>
+
+                <div>
+
+                    <strong>
+                        Ready to see your insight?
+                    </strong>
+
+                    <p>
+                        MindBridge will analyze your responses
+                        and generate your personalized result.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary assessment-submit-btn"
+                data-loading
+            >
+                Analyze My Well-being
+                <span>→</span>
+            </button>
+
+        </section>
+
+    </form>
+
+
+    <!-- =========================================
+         RESPONSIBLE AI NOTE
+         ========================================= -->
+
+    <section class="assessment-note">
+
+        <span class="note-icon">ⓘ</span>
+
+        <p>
+            <strong>A note from MindBridge:</strong>
+            This assessment provides AI-assisted well-being insights
+            and is not a medical diagnosis. If you are experiencing
+            serious or persistent distress, consider speaking with
+            a qualified mental health professional.
+        </p>
+
+    </section>
+
+</main>
+
+{% endblock %}

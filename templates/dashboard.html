@@ -1,0 +1,408 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — MindBridge{% endblock %}
+
+{% block content %}
+
+<main class="dashboard-page">
+
+    <!-- =========================
+         WELCOME HERO
+         ========================= -->
+
+    <section class="dashboard-hero">
+
+        <div class="dashboard-hero-content">
+
+            <span class="dashboard-eyebrow">
+                <span class="status-dot"></span>
+                Personal well-being dashboard
+            </span>
+
+            <h1>
+                Good to see you,
+                <span>{{ user.name }}.</span>
+            </h1>
+
+            <p>
+                Keep checking in with yourself. Your well-being journey
+                is built one small step at a time.
+            </p>
+
+        </div>
+
+        <div class="dashboard-hero-action">
+
+            <a href="/assessment" class="btn btn-primary btn-large">
+                <span>✦</span>
+                Take Assessment
+            </a>
+
+        </div>
+
+        <!-- Decorative element -->
+        <div class="dashboard-hero-orb"></div>
+
+    </section>
+
+
+    <!-- =========================
+         OVERVIEW
+         ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading-row">
+
+            <div>
+                <span class="section-kicker">Overview</span>
+                <h2>Your well-being at a glance</h2>
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-stats">
+
+            <!-- Total assessments -->
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-top">
+
+                    <div class="dashboard-stat-icon stat-indigo">
+                        ◫
+                    </div>
+
+                    <span class="stat-mini-label">
+                        Check-ins
+                    </span>
+
+                </div>
+
+                <div class="dashboard-stat-number">
+                    {{ assessments|length if assessments else 0 }}
+                </div>
+
+                <p>
+                    Total assessments completed
+                </p>
+
+            </div>
+
+
+            <!-- Latest risk -->
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-top">
+
+                    <div class="dashboard-stat-icon stat-blue">
+                        ◉
+                    </div>
+
+                    <span class="stat-mini-label">
+                        Latest
+                    </span>
+
+                </div>
+
+                <div class="dashboard-stat-number stat-text">
+
+                    {% if assessments %}
+                        {{ assessments[-1].risk_level }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </div>
+
+                <p>
+                    Most recent well-being status
+                </p>
+
+            </div>
+
+
+            <!-- Tracking -->
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-top">
+
+                    <div class="dashboard-stat-icon stat-green">
+                        ↗
+                    </div>
+
+                    <span class="stat-mini-label">
+                        Goal
+                    </span>
+
+                </div>
+
+                <div class="dashboard-stat-number stat-text">
+                    Active
+                </div>
+
+                <p>
+                    Keep building healthy habits
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         AI INSIGHT
+         ========================= -->
+
+    <section class="dashboard-insight">
+
+        <div class="insight-icon">
+            ✦
+        </div>
+
+        <div class="insight-content">
+
+            <span>MindBridge insight</span>
+
+            <h3>
+                Understanding yourself is the first step.
+            </h3>
+
+            <p>
+                Your assessment results are designed to help you
+                recognize patterns and reflect on factors that may
+                influence your well-being.
+            </p>
+
+        </div>
+
+        <div class="insight-decoration">
+            ✧
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ASSESSMENT HISTORY
+         ========================= -->
+
+    <section class="dashboard-section history-section">
+
+        <div class="section-heading-row">
+
+            <div>
+
+                <span class="section-kicker">
+                    Your journey
+                </span>
+
+                <h2>
+                    Assessment history
+                </h2>
+
+                <p class="section-description">
+                    Review your previous well-being check-ins
+                    and explore your insights.
+                </p>
+
+            </div>
+
+            <a
+                href="/assessment"
+                class="btn btn-secondary btn-sm"
+            >
+                + New Check-in
+            </a>
+
+        </div>
+
+
+        {% if assessments %}
+
+        <div class="assessment-list">
+
+            {% for a in assessments %}
+
+            <article class="assessment-row">
+
+                <!-- Date -->
+
+                <div class="assessment-date">
+
+                    <div class="assessment-date-icon">
+                        ◷
+                    </div>
+
+                    <div>
+                        <strong>
+                            {{ a.date.strftime('%b %d, %Y') }}
+                        </strong>
+
+                        <span>
+                            {{ a.date.strftime('%I:%M %p') }}
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- Score -->
+
+                <div class="assessment-score">
+
+                    <span>
+                        Risk score
+                    </span>
+
+                    <strong>
+                        {{ a.risk_score }}
+                    </strong>
+
+                </div>
+
+
+                <!-- Risk -->
+
+                <div class="assessment-risk">
+
+                    <span class="risk-label">
+                        Status
+                    </span>
+
+                    {% if 'Low' in a.risk_level %}
+
+                        <span class="risk-badge risk-low">
+                            <span></span>
+                            {{ a.risk_level }}
+                        </span>
+
+                    {% elif 'Medium' in a.risk_level %}
+
+                        <span class="risk-badge risk-medium">
+                            <span></span>
+                            {{ a.risk_level }}
+                        </span>
+
+                    {% else %}
+
+                        <span class="risk-badge risk-high">
+                            <span></span>
+                            {{ a.risk_level }}
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Factors -->
+
+                <div class="assessment-factors">
+
+                    <span>
+                        Key factors
+                    </span>
+
+                    <p>
+                        {{ a.top_factors if a.top_factors else 'General check-in' }}
+                    </p>
+
+                </div>
+
+
+                <!-- Action -->
+
+                <a
+                    href="/result/{{ a.id }}"
+                    class="assessment-action"
+                >
+                    View details
+                    <span>→</span>
+                </a>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- EMPTY STATE -->
+
+        <div class="dashboard-empty">
+
+            <div class="empty-illustration">
+                ✦
+            </div>
+
+            <h3>
+                Your journey starts here
+            </h3>
+
+            <p>
+                You haven't completed a well-being assessment yet.
+                Take your first check-in to receive your personalized
+                MindBridge insights.
+            </p>
+
+            <a
+                href="/assessment"
+                class="btn btn-primary"
+            >
+                Start your first assessment
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- =========================
+         SUPPORT
+         ========================= -->
+
+    <section class="dashboard-support">
+
+        <div class="support-icon">
+            ♡
+        </div>
+
+        <div class="support-content">
+
+            <span>
+                You're not alone
+            </span>
+
+            <h2>
+                Need someone to talk to?
+            </h2>
+
+            <p>
+                Explore support resources and find places where
+                you can reach out when you need help.
+            </p>
+
+        </div>
+
+        <a
+            href="/support"
+            class="btn btn-light"
+        >
+            Explore support
+            <span>→</span>
+        </a>
+
+    </section>
+
+</main>
+
+{% endblock %}

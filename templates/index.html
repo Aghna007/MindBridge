@@ -1,0 +1,1311 @@
+{% extends "base.html" %}
+
+{% block title %}
+    MindBridge | Understand Your Well-being
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container hero-container">
+
+        <!-- Hero Content -->
+
+        <div class="hero-content reveal">
+
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                AI-assisted student well-being
+            </div>
+
+            <h1>
+                Understand your well-being.
+                <span>Take the next step with confidence.</span>
+            </h1>
+
+            <p class="hero-description">
+                MindBridge combines AI-powered assessment,
+                explainable insights, personalized guidance,
+                and progress tracking to help students better
+                understand factors affecting their well-being.
+            </p>
+
+
+            <div class="hero-actions">
+
+                {% if session.get('user_id') %}
+
+                    <a href="{{ url_for('assessment') }}"
+                       class="btn btn-primary btn-large">
+
+                        Start Your Assessment
+
+                        <span class="btn-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                {% else %}
+
+                    <a href="{{ url_for('register') }}"
+                       class="btn btn-primary btn-large">
+
+                        Assess Your Well-being
+
+                        <span class="btn-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                {% endif %}
+
+
+                <a href="#how-it-works"
+                   class="hero-secondary-link">
+
+                    Explore MindBridge
+
+                    <span>
+                        ↓
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+
+                    <span class="trust-icon">
+                        ✓
+                    </span>
+
+                    Student-focused
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <span class="trust-icon">
+                        ✓
+                    </span>
+
+                    Explainable insights
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <span class="trust-icon">
+                        ✓
+                    </span>
+
+                    Privacy-conscious
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Hero Visual -->
+
+        <div class="hero-visual reveal">
+
+            <div class="hero-orbit orbit-one"></div>
+            <div class="hero-orbit orbit-two"></div>
+
+
+            <!-- Main floating dashboard card -->
+
+            <div class="hero-dashboard-card">
+
+                <div class="mini-card-header">
+
+                    <div>
+
+                        <span class="mini-eyebrow">
+                            WELL-BEING SNAPSHOT
+                        </span>
+
+                        <h3>
+                            Your latest insight
+                        </h3>
+
+                    </div>
+
+                    <span class="status-dot"></span>
+
+                </div>
+
+
+                <div class="score-area">
+
+                    <div class="score-ring">
+
+                        <div class="score-ring-inner">
+
+                            <strong>
+                                58%
+                            </strong>
+
+                            <span>
+                                Moderate
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="score-copy">
+
+                        <span class="score-label">
+                            Assessment result
+                        </span>
+
+                        <p>
+                            Your responses suggest
+                            a moderate level of
+                            well-being risk.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="insight-list">
+
+                    <div class="insight-row">
+
+                        <div class="insight-name">
+
+                            <span class="insight-dot green"></span>
+
+                            Study-life balance
+
+                        </div>
+
+                        <span>
+                            Stable
+                        </span>
+
+                    </div>
+
+
+                    <div class="insight-row">
+
+                        <div class="insight-name">
+
+                            <span class="insight-dot amber"></span>
+
+                            Academic pressure
+
+                        </div>
+
+                        <span>
+                            Moderate
+                        </span>
+
+                    </div>
+
+
+                    <div class="insight-row">
+
+                        <div class="insight-name">
+
+                            <span class="insight-dot blue"></span>
+
+                            Sleep pattern
+
+                        </div>
+
+                        <span>
+                            Improve
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Floating AI insight -->
+
+            <div class="floating-card floating-insight">
+
+                <div class="floating-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <span>
+                        AI INSIGHT
+                    </span>
+
+                    <strong>
+                        3 factors identified
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Floating progress card -->
+
+            <div class="floating-card floating-progress">
+
+                <div class="progress-top">
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <strong>
+                        +18%
+                    </strong>
+
+                </div>
+
+                <div class="progress-track">
+
+                    <div class="progress-fill"></div>
+
+                </div>
+
+                <small>
+                    Compared with your previous assessment
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ABOUT / INTRODUCTION
+========================================================= -->
+
+<section class="section about-section"
+         id="about">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="section-header reveal">
+
+                <span class="section-label">
+                    About MindBridge
+                </span>
+
+                <h2>
+                    Your well-being deserves
+                    more than a score.
+                </h2>
+
+            </div>
+
+
+            <div class="about-copy reveal">
+
+                <p class="about-lead">
+                    MindBridge is designed to help students
+                    move from simply receiving a prediction
+                    to actually understanding what may be
+                    influencing their well-being.
+                </p>
+
+                <p>
+                    Through assessment, explainable insights,
+                    personalized guidance, progress tracking,
+                    and access to support resources, MindBridge
+                    creates a more meaningful journey around
+                    student well-being.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-capabilities">
+
+            <div class="capability-card reveal">
+
+                <span class="capability-number">
+                    01
+                </span>
+
+                <div class="capability-icon">
+                    ◌
+                </div>
+
+                <h3>
+                    Assess
+                </h3>
+
+                <p>
+                    Understand patterns across academic,
+                    lifestyle, and personal factors.
+                </p>
+
+            </div>
+
+
+            <div class="capability-card reveal">
+
+                <span class="capability-number">
+                    02
+                </span>
+
+                <div class="capability-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Explain
+                </h3>
+
+                <p>
+                    See which factors contributed to
+                    your assessment.
+                </p>
+
+            </div>
+
+
+            <div class="capability-card reveal">
+
+                <span class="capability-number">
+                    03
+                </span>
+
+                <div class="capability-icon">
+                    ↗
+                </div>
+
+                <h3>
+                    Guide
+                </h3>
+
+                <p>
+                    Receive guidance designed around
+                    your assessment context.
+                </p>
+
+            </div>
+
+
+            <div class="capability-card reveal">
+
+                <span class="capability-number">
+                    04
+                </span>
+
+                <div class="capability-icon">
+                    ◷
+                </div>
+
+                <h3>
+                    Track
+                </h3>
+
+                <p>
+                    Follow changes across assessments
+                    over time.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section class="section process-section"
+         id="how-it-works">
+
+    <div class="container">
+
+        <div class="section-header centered reveal">
+
+            <span class="section-label">
+                How It Works
+            </span>
+
+            <h2>
+                From assessment to action.
+            </h2>
+
+            <p>
+                MindBridge turns a single assessment
+                into a journey of understanding.
+            </p>
+
+        </div>
+
+
+        <div class="process-flow">
+
+
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    01
+                </div>
+
+                <div class="process-icon">
+                    ◌
+                </div>
+
+                <h3>
+                    Assess
+                </h3>
+
+                <p>
+                    Answer questions about academic,
+                    lifestyle, and personal factors.
+                </p>
+
+            </div>
+
+
+            <div class="process-line"></div>
+
+
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    02
+                </div>
+
+                <div class="process-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Understand
+                </h3>
+
+                <p>
+                    Explore the factors that influenced
+                    your assessment.
+                </p>
+
+            </div>
+
+
+            <div class="process-line"></div>
+
+
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    03
+                </div>
+
+                <div class="process-icon">
+                    ↗
+                </div>
+
+                <h3>
+                    Get Guidance
+                </h3>
+
+                <p>
+                    Receive personalized suggestions
+                    based on your results.
+                </p>
+
+            </div>
+
+
+            <div class="process-line"></div>
+
+
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    04
+                </div>
+
+                <div class="process-icon">
+                    ◷
+                </div>
+
+                <h3>
+                    Track
+                </h3>
+
+                <p>
+                    Compare assessments and observe
+                    your progress over time.
+                </p>
+
+            </div>
+
+
+            <div class="process-line"></div>
+
+
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    05
+                </div>
+
+                <div class="process-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    Seek Support
+                </h3>
+
+                <p>
+                    Explore professional support resources
+                    when additional help is needed.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section class="section features-section"
+         id="features">
+
+    <div class="container">
+
+        <div class="section-header reveal">
+
+            <span class="section-label">
+                What MindBridge Offers
+            </span>
+
+            <h2>
+                More than a prediction.
+            </h2>
+
+            <p>
+                A thoughtful combination of assessment,
+                explanation, guidance, and support.
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+
+            <article class="feature-card feature-large reveal">
+
+                <div class="feature-top">
+
+                    <div class="feature-icon">
+                        ✦
+                    </div>
+
+                    <span>
+                        01
+                    </span>
+
+                </div>
+
+                <h3>
+                    AI-Powered Assessment
+                </h3>
+
+                <p>
+                    Assess patterns associated with
+                    student well-being using information
+                    provided during the assessment.
+                </p>
+
+                <div class="feature-decoration">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </article>
+
+
+            <article class="feature-card reveal">
+
+                <div class="feature-top">
+
+                    <div class="feature-icon">
+                        ◎
+                    </div>
+
+                    <span>
+                        02
+                    </span>
+
+                </div>
+
+                <h3>
+                    Explainable AI
+                </h3>
+
+                <p>
+                    Understand which factors influenced
+                    the assessment rather than seeing
+                    only a final prediction.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card reveal">
+
+                <div class="feature-top">
+
+                    <div class="feature-icon">
+                        ↗
+                    </div>
+
+                    <span>
+                        03
+                    </span>
+
+                </div>
+
+                <h3>
+                    Personalized Guidance
+                </h3>
+
+                <p>
+                    Receive guidance based on the
+                    context reflected in your assessment.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card reveal">
+
+                <div class="feature-top">
+
+                    <div class="feature-icon">
+                        ◷
+                    </div>
+
+                    <span>
+                        04
+                    </span>
+
+                </div>
+
+                <h3>
+                    Progress Tracking
+                </h3>
+
+                <p>
+                    Keep track of previous assessments
+                    and changes across time.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card feature-support reveal">
+
+                <div class="feature-top">
+
+                    <div class="feature-icon">
+                        ♡
+                    </div>
+
+                    <span>
+                        05
+                    </span>
+
+                </div>
+
+                <h3>
+                    Professional Support
+                </h3>
+
+                <p>
+                    Explore appropriate professional
+                    support resources when you need
+                    additional help.
+                </p>
+
+                <a href="{{ url_for('support') }}"
+                   class="feature-link">
+
+                    Explore Support
+                    →
+
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     BEYOND A PREDICTION
+========================================================= -->
+
+<section class="section beyond-section">
+
+    <div class="container">
+
+        <div class="beyond-grid">
+
+
+            <div class="section-header reveal">
+
+                <span class="section-label">
+                    Beyond a Prediction
+                </span>
+
+                <h2>
+                    A result should be
+                    the beginning.
+                </h2>
+
+                <p>
+                    Traditional prediction systems often
+                    stop once a classification is produced.
+                    MindBridge is designed to take the next
+                    steps with the user.
+                </p>
+
+            </div>
+
+
+            <div class="comparison-visual reveal">
+
+
+                <div class="comparison-column traditional">
+
+                    <div class="comparison-heading">
+
+                        <span>
+                            Traditional ML
+                        </span>
+
+                    </div>
+
+                    <div class="comparison-node">
+                        Prediction
+                    </div>
+
+                    <div class="comparison-arrow">
+                        ↓
+                    </div>
+
+                    <div class="comparison-end">
+                        End
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-divider">
+
+                    <span>
+                        vs
+                    </span>
+
+                </div>
+
+
+                <div class="comparison-column mindbridge-flow">
+
+                    <div class="comparison-heading">
+
+                        <span>
+                            MindBridge
+                        </span>
+
+                    </div>
+
+
+                    <div class="comparison-node active">
+                        Assessment
+                    </div>
+
+                    <div class="comparison-arrow">
+                        ↓
+                    </div>
+
+                    <div class="comparison-node active">
+                        Explainable AI
+                    </div>
+
+                    <div class="comparison-arrow">
+                        ↓
+                    </div>
+
+                    <div class="comparison-node active">
+                        Personalized Guidance
+                    </div>
+
+                    <div class="comparison-arrow">
+                        ↓
+                    </div>
+
+                    <div class="comparison-node active">
+                        Progress Tracking
+                    </div>
+
+                    <div class="comparison-arrow">
+                        ↓
+                    </div>
+
+                    <div class="comparison-node active">
+                        Professional Support
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RESPONSIBLE AI
+========================================================= -->
+
+<section class="section trust-section">
+
+    <div class="container">
+
+        <div class="trust-panel reveal">
+
+            <div class="trust-panel-icon">
+                🛡
+            </div>
+
+
+            <div class="trust-panel-content">
+
+                <span class="section-label">
+                    Responsible AI
+                </span>
+
+                <h2>
+                    Designed to support,
+                    not diagnose.
+                </h2>
+
+                <p>
+                    MindBridge provides AI-assisted well-being
+                    insights and guidance. It is not a medical
+                    diagnostic tool and does not replace qualified
+                    professional care.
+                </p>
+
+            </div>
+
+
+            <div class="trust-panel-badge">
+
+                <span>
+                    Responsible
+                </span>
+
+                <strong>
+                    AI
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     WHO IS MINDBRIDGE FOR?
+========================================================= -->
+
+<section class="section student-section">
+
+    <div class="container">
+
+        <div class="section-header centered reveal">
+
+            <span class="section-label">
+                Built Around Student Life
+            </span>
+
+            <h2>
+                Well-being is shaped by
+                more than one thing.
+            </h2>
+
+            <p>
+                MindBridge considers different areas of
+                student life that can influence overall
+                well-being.
+            </p>
+
+        </div>
+
+
+        <div class="student-grid">
+
+
+            <div class="student-card reveal">
+
+                <span class="student-number">
+                    01
+                </span>
+
+                <div class="student-emoji">
+                    📚
+                </div>
+
+                <h3>
+                    Academic Pressure
+                </h3>
+
+                <p>
+                    Coursework, expectations, deadlines,
+                    and academic demands.
+                </p>
+
+            </div>
+
+
+            <div class="student-card reveal">
+
+                <span class="student-number">
+                    02
+                </span>
+
+                <div class="student-emoji">
+                    🌙
+                </div>
+
+                <h3>
+                    Sleep & Lifestyle
+                </h3>
+
+                <p>
+                    Everyday habits and routines that
+                    contribute to student life.
+                </p>
+
+            </div>
+
+
+            <div class="student-card reveal">
+
+                <span class="student-number">
+                    03
+                </span>
+
+                <div class="student-emoji">
+                    💳
+                </div>
+
+                <h3>
+                    Financial Stress
+                </h3>
+
+                <p>
+                    Financial pressures that may affect
+                    everyday student experiences.
+                </p>
+
+            </div>
+
+
+            <div class="student-card reveal">
+
+                <span class="student-number">
+                    04
+                </span>
+
+                <div class="student-emoji">
+                    ⚖
+                </div>
+
+                <h3>
+                    Study-Life Balance
+                </h3>
+
+                <p>
+                    Finding space for studies, rest,
+                    relationships, and personal time.
+                </p>
+
+            </div>
+
+
+            <div class="student-card reveal">
+
+                <span class="student-number">
+                    05
+                </span>
+
+                <div class="student-emoji">
+                    ✨
+                </div>
+
+                <h3>
+                    Personal Well-being
+                </h3>
+
+                <p>
+                    A broader view of the factors
+                    surrounding student well-being.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TEAM
+========================================================= -->
+
+<section class="section team-section"
+         id="team">
+
+    <div class="container">
+
+        <div class="section-header centered reveal">
+
+            <span class="section-label">
+                The Team
+            </span>
+
+            <h2>
+                Meet the people behind MindBridge.
+            </h2>
+
+            <p>
+                A collaborative student project bringing
+                together AI, engineering, design, and
+                recommendation systems.
+            </p>
+
+        </div>
+
+
+        <div class="team-grid">
+
+
+            <div class="team-card reveal">
+
+                <div class="team-avatar">
+                    AM
+                </div>
+
+                <div>
+
+                    <h3>
+                        Anna Mijo
+                    </h3>
+
+                    <p>
+                        ML & Explainable AI
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="team-card reveal">
+
+                <div class="team-avatar">
+                    AV
+                </div>
+
+                <div>
+
+                    <h3>
+                        Aghna Vincent
+                    </h3>
+
+                    <p>
+                        Backend & Database
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="team-card reveal">
+
+                <div class="team-avatar">
+                    AS
+                </div>
+
+                <div>
+
+                    <h3>
+                        Ahiya Thattil Shiji
+                    </h3>
+
+                    <p>
+                        Frontend & UI/UX
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="team-card reveal">
+
+                <div class="team-avatar">
+                    JJ
+                </div>
+
+                <div>
+
+                    <h3>
+                        Joel Jojan
+                    </h3>
+
+                    <p>
+                        AI Recommendations & Integration
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="section final-cta-section">
+
+    <div class="container">
+
+        <div class="final-cta reveal">
+
+            <div class="cta-glow"></div>
+
+            <span class="section-label">
+                Your next step
+            </span>
+
+            <h2>
+                Ready to understand
+                your well-being better?
+            </h2>
+
+            <p>
+                Start with a simple assessment and
+                discover insights designed to help
+                you take your next step.
+            </p>
+
+
+            {% if session.get('user_id') %}
+
+                <a href="{{ url_for('assessment') }}"
+                   class="btn btn-light btn-large">
+
+                    Start Your Assessment
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('register') }}"
+                   class="btn btn-light btn-large">
+
+                    Start Your Assessment
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

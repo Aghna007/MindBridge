@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}Your Assessment Result — MindBridge{% endblock %}
+
+{% block content %}
+
+<main class="result-page">
+
+    <!-- Result Hero -->
+    <section class="result-hero">
+        <div class="result-hero-content">
+
+            <div class="result-eyebrow">
+                <span>✦</span>
+                AI-ASSISTED WELL-BEING INSIGHT
+            </div>
+
+            <h1>Your well-being snapshot is ready.</h1>
+
+            <p>
+                Your assessment has been analyzed to provide a personalized
+                overview of the factors influencing your current well-being.
+            </p>
+
+            <div class="result-date">
+                <span>◷</span>
+                Assessed on {{ assessment.date.strftime('%B %d, %Y at %I:%M %p') }}
+            </div>
+
+        </div>
+
+        <div class="result-hero-orb">
+            <div class="result-orb-inner">
+                <span>✦</span>
+                <small>MindBridge</small>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Main Result -->
+    <section class="result-main">
+
+        <!-- Risk Overview -->
+        <div class="result-score-card">
+
+            <div class="result-card-heading">
+                <div>
+                    <span class="result-label">EVALUATION OVERVIEW</span>
+                    <h2>Your current well-being level</h2>
+                </div>
+
+                <div class="result-score-mini">
+                    <span>Score Index</span>
+                    <strong>{{ assessment.risk_score }}</strong>
+                </div>
+            </div>
+
+
+            <!-- Risk Level -->
+            <div class="risk-display">
+
+                <div class="risk-icon
+                    {% if 'Low' in assessment.risk_level %}
+                        risk-low
+                    {% elif 'Medium' in assessment.risk_level %}
+                        risk-medium
+                    {% else %}
+                        risk-high
+                    {% endif %}
+                ">
+                    {% if 'Low' in assessment.risk_level %}
+                        ✓
+                    {% elif 'Medium' in assessment.risk_level %}
+                        !
+                    {% else %}
+                        !
+                    {% endif %}
+                </div>
+
+                <div class="risk-content">
+                    <span class="risk-caption">ASSESSMENT INDICATOR</span>
+
+                    {% if 'Low' in assessment.risk_level %}
+                        <h3 class="risk-low-text">
+                            {{ assessment.risk_level }}
+                        </h3>
+                        <p>
+                            Your responses indicate relatively lower
+                            well-being risk at this time.
+                        </p>
+
+                    {% elif 'Medium' in assessment.risk_level %}
+                        <h3 class="risk-medium-text">
+                            {{ assessment.risk_level }}
+                        </h3>
+                        <p>
+                            Your responses suggest that some areas of
+                            your well-being may deserve additional attention.
+                        </p>
+
+                    {% else %}
+                        <h3 class="risk-high-text">
+                            {{ assessment.risk_level }}
+                        </h3>
+                        <p>
+                            Your responses indicate that additional
+                            support and attention may be beneficial.
+                        </p>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Two Column Information -->
+        <div class="result-grid">
+
+            <!-- Influencing Factors -->
+            <article class="result-info-card">
+
+                <div class="result-info-icon factors-icon">
+                    ◈
+                </div>
+
+                <div>
+                    <span class="result-label">WHAT INFLUENCED YOUR RESULT?</span>
+
+                    <h3>Key influencing factors</h3>
+
+                    <p>
+                        These are the factors identified from your assessment
+                        responses as contributing to your overall result.
+                    </p>
+
+                    <div class="result-factor-box">
+                        {{ assessment.top_factors }}
+                    </div>
+                </div>
+
+            </article>
+
+
+            <!-- AI Recommendations (Structured) -->
+            <article class="result-info-card recommendation-card">
+
+                <div class="result-info-icon recommendation-icon">
+                    ✦
+                </div>
+
+                <div>
+                    <span class="result-label">YOUR NEXT STEPS</span>
+
+                    <h3>Personalized guidance</h3>
+
+                    <!-- AI Summary -->
+                    {% if rec and rec.summary %}
+                    <div class="summary-box" style="margin-bottom: 15px;">
+                        <p><strong>Overview:</strong> {{ rec.summary }}</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- AI Recommendations List -->
+                    <div class="result-recommendation-box">
+                        {% if rec and rec.recommendations %}
+                            <ul style="padding-left: 20px; list-style-type: disc;">
+                                {% for tip in rec.recommendations %}
+                                    <li style="margin-bottom: 8px;">{{ tip }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>{{ assessment.recommendations }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- Professional Support Message (if available) -->
+        {% if rec and rec.professional_support %}
+        <div class="support-note" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+            <p><strong>Professional Support Note:</strong> {{ rec.professional_support }}</p>
+        </div>
+        {% endif %}
+
+
+        <!-- Beyond Prediction -->
+        <section class="result-next-section">
+
+            <div class="next-section-heading">
+                <span class="result-label">BEYOND THE SCORE</span>
+                <h2>Your result is a starting point, not a label.</h2>
+                <p>
+                    Well-being can change over time. Use this insight to
+                    understand yourself better and decide what support or
+                    habits may be useful for you.
+                </p>
+            </div>
+
+            <div class="result-action-grid">
+
+                <a href="/dashboard" class="result-action-card">
+                    <div class="action-icon">↗</div>
+                    <div>
+                        <span>YOUR JOURNEY</span>
+                        <h3>Return to Dashboard</h3>
+                        <p>View your assessment history and progress.</p>
+                    </div>
+                    <strong>→</strong>
+                </a>
+
+                <a href="/support" class="result-action-card">
+                    <div class="action-icon">♡</div>
+                    <div>
+                        <span>SUPPORT</span>
+                        <h3>Explore Support Resources</h3>
+                        <p>Find helpful resources and professional support.</p>
+                    </div>
+                    <strong>→</strong>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Responsible AI -->
+        <section class="result-disclaimer">
+
+            <div class="disclaimer-icon">
+                ⓘ
+            </div>
+
+            <div>
+                <h3>A note about your result</h3>
+
+                <p>
+                    MindBridge provides AI-assisted well-being insights
+                    based on the information you provided. This assessment
+                    is not a medical diagnosis and does not replace
+                    professional mental-health care.
+                </p>
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+{% endblock %}
