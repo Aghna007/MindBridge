@@ -1,0 +1,13 @@
+A web application built using **Flask**, **SQLAlchemy**, **Scikit-learn**, and **Google Gemini** for intelligent health/mental assessments and automated recommendations.
+
+ 🚀 Key Features
+- **Flask Framework:** Robust backend routing and database management using SQLAlchemy.
+- **Machine Learning Integration:** Utilizes trained models (`scikit-learn`, `joblib`, `shap`) for accurate analysis and predictions.
+- **Google Gemini API:** Provides advanced AI-driven insights and structured feedback.
+- **Interactive UI:** Clean, responsive templates for user assessment and result visualization.
+
+ 🛠️ Tech Stack
+- **Backend:** Python, Flask, Flask-SQLAlchemy, Gunicorn
+- **Machine Learning & Data:** Scikit-learn, Pandas, NumPy, Joblib, Shap, Numba
+- **AI Integration:** Google Gemini API
+- **Database:** SQLite
